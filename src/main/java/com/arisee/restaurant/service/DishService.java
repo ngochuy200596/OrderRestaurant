@@ -41,6 +41,7 @@ public class DishService {
             dish.setName(dishForm.getName());
             dish.setStatus(dishForm.getStatus());
             dish.setPrice(dishForm.getPrice());
+            dish.setCategoryId(dishForm.getCategoryId());
             return this.dishRepository.save(dish);
 
         });
@@ -51,6 +52,7 @@ public class DishService {
         dish.setName(dishForm.getName());
         dish.setStatus(dishForm.getStatus());
         dish.setPrice(dishForm.getPrice());
+        dish.setCategoryId(dishForm.getCategoryId());
         return this.dishRepository.save(dish);
     }
 }

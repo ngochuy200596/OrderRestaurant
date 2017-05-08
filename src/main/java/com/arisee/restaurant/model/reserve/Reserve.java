@@ -11,4 +11,5 @@ public class Reserve {
     private String phone;
     private LocalDateTime scheduleOn;
     private LocalDateTime createdDate;
+    private BigInteger tableId;
 }

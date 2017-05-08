@@ -26,4 +26,8 @@ public class OrderForm {
 
     @NotEmpty
     private List<OrderItemForm> items;
+    @NotNull
+    private BigInteger tableId;
+    @NotNull
+    private BigInteger userId;
 }

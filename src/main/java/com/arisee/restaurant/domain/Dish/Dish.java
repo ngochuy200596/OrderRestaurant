@@ -21,11 +21,12 @@ public class Dish {
     @Enumerated(EnumType.ORDINAL)
     private DishStatus status;
     private float price;
+    private BigInteger categoryId;
 
-    @ManyToOne
-    @JoinColumn(name = "categoryId")
-    @JsonIgnore
-    private Category category;
+//    @ManyToOne
+//    @JoinColumn(name = "categoryId")
+//    @JsonIgnore
+//    private Category category;
 
     public com.arisee.restaurant.model.dish.Dish toDish(){
         com.arisee.restaurant.model.dish.Dish rs = new com.arisee.restaurant.model.dish.Dish();
@@ -33,6 +34,7 @@ public class Dish {
         rs.setName(name);
         rs.setStatus(status);
         rs.setPrice(price);
+        rs.setCategoryId(categoryId);
         return rs;
     }
 

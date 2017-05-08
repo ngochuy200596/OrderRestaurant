@@ -27,10 +27,17 @@ public class Order {
     private OrderStatus status;
     private LocalDateTime scheduleOn;
     private LocalDateTime createdDate;
+    private BigInteger tableId;
+    private BigInteger userId;
 
     @OneToMany(mappedBy = "pk.order", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<OrderItem> items = new ArrayList<>();
+
+//    @ManyToOne
+//    @JoinColumn(name = "tableId")
+//    @JsonIgnore
+//    private com.arisee.restaurant.domain.table.Table table;
 
     public com.arisee.restaurant.model.order.Order toOrder() {
         com.arisee.restaurant.model.order.Order rs = new com.arisee.restaurant.model.order.Order();
@@ -40,6 +47,8 @@ public class Order {
         rs.setStatus(status);
         rs.setScheduleOn(scheduleOn);
         rs.setCreatedDate(createdDate);
+        rs.setTableId(tableId);
+        rs.setUserId(userId);
         rs.setItems(getItems().stream().map(OrderItem::toForm).collect(Collectors.toList()));
 
         return rs;

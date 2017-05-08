@@ -40,6 +40,7 @@ public class ReserveService {
         return getById(id).map(reserve -> {
             reserve.setCustomerName(reserveForm.getCustomerName());
             reserve.setPhone(reserveForm.getPhone());
+            reserve.setTableId(reserveForm.getTableId());
             reserve.setScheduleOn(reserveForm.getScheduleOn());
             return this.reserveRepository.save(reserve);
         });
@@ -49,6 +50,7 @@ public class ReserveService {
         Reserve reserve = new Reserve();
         reserve.setCustomerName(reserveForm.getCustomerName());
         reserve.setPhone(reserveForm.getPhone());
+        reserve.setTableId(reserveForm.getTableId());
         reserve.setScheduleOn(reserveForm.getScheduleOn());
         reserve.setCreatedDate(LocalDateTime.now());
         return this.reserveRepository.save(reserve);

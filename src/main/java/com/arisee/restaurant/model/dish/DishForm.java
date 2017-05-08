@@ -5,6 +5,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
+import java.math.BigInteger;
 
 @Data
 public class DishForm {
@@ -13,4 +14,6 @@ public class DishForm {
     @NotNull
     private DishStatus status;
     private float price;
+    @NotNull
+    private BigInteger categoryId;
 }

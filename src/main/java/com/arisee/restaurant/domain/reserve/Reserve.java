@@ -26,17 +26,19 @@ public class Reserve {
     @JsonDeserialize(using = LocalDateTimeJsonDeserializer.class)
     private LocalDateTime scheduleOn;
     private LocalDateTime createdDate;
+    private BigInteger tableId;
 
-    @ManyToOne
-    @JoinColumn(name="tableId")
-    @JsonIgnore
-    private com.arisee.restaurant.domain.table.Table table;
+//    @ManyToOne
+//    @JoinColumn(name="tableId")
+//    @JsonIgnore
+//    private com.arisee.restaurant.domain.table.Table table;
 
     public com.arisee.restaurant.model.reserve.Reserve toReserve(){
         com.arisee.restaurant.model.reserve.Reserve rs = new com.arisee.restaurant.model.reserve.Reserve();
         rs.setId(id);
         rs.setCustomerName(customerName);
         rs.setPhone(phone);
+        rs.setTableId(tableId);
         rs.setScheduleOn(scheduleOn);
         rs.setCreatedDate(createdDate);
         return rs;

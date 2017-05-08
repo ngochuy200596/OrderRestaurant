@@ -17,4 +17,6 @@ public class Order {
     private LocalDateTime scheduleOn;
     private LocalDateTime createdDate;
     private List<OrderItemForm> items;
+    private BigInteger tableId;
+    private BigInteger userId;
 }
