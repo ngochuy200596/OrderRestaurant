@@ -2,6 +2,5 @@ package com.arisee.restaurant.domain.processingOrder;
 
 
 public enum ProcessingOrderItemStatus {
-    NOT_AVAILABLE, AVAILABLE
-
+    AVAILABLE, NOT_AVAILABLE, FINISH
 }

@@ -1,5 +1,6 @@
 package com.arisee.restaurant.controller;
 
+import com.arisee.restaurant.domain.processingOrder.ProcessingOrderItem;
 import com.arisee.restaurant.domain.processingOrder.TableProcessingOrder;
 import com.arisee.restaurant.exception.NotFoundException;
 import com.arisee.restaurant.model.FormResponse;
@@ -14,7 +15,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @RestController
-@RequestMapping("/processingOrders")
+@RequestMapping("/api/processingOrders")
 public class TableProcessingOrderController {
     @Autowired
     private TableProcessingOrderService tableProcessingOrderService;
@@ -25,8 +26,8 @@ public class TableProcessingOrderController {
     }
 
     @RequestMapping(value = "/{tableId}", method = RequestMethod.GET)
-    public TableProcessingOrder getById(@PathVariable("tableId") BigInteger tableId) {
-        return this.tableProcessingOrderService.getById(tableId)
+    public com.arisee.restaurant.model.processingOrder.TableProcessingOrder getById(@PathVariable("tableId") BigInteger tableId) {
+        return this.tableProcessingOrderService.getById(tableId).map(TableProcessingOrder::toTableProcessingOrder)
                 .orElseThrow(NotFoundException::new);
     }
 
@@ -36,8 +37,21 @@ public class TableProcessingOrderController {
     }
 
     @RequestMapping(value = "/{tableId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public TableProcessingOrder update(@PathVariable BigInteger tableId, @Valid @RequestBody TableProcessingOrderForm tableProcessingOrderForm) {
-        return this.tableProcessingOrderService.update(tableId, tableProcessingOrderForm)
+    public com.arisee.restaurant.model.processingOrder.TableProcessingOrder update(@PathVariable BigInteger tableId,
+                                                                                   @Valid @RequestBody TableProcessingOrderForm tableProcessingOrderForm) {
+        return this.tableProcessingOrderService.update(tableId, tableProcessingOrderForm).map(TableProcessingOrder::toTableProcessingOrder)
+                .orElseThrow(NotFoundException::new);
+    }
+
+    @RequestMapping(value = "/{tableId}/status/{status}", method = RequestMethod.POST)
+    public TableProcessingOrder setStatus(@PathVariable BigInteger tableId, @PathVariable Integer status) {
+        return this.tableProcessingOrderService.setStatus(tableId, status)
+                .orElseThrow(NotFoundException::new);
+    }
+
+    @RequestMapping(value = "/{tableId}/disTable/{disTableId}",method = RequestMethod.POST)
+    public TableProcessingOrder move(@PathVariable BigInteger tableId, @PathVariable BigInteger disTableId){
+        return this.tableProcessingOrderService.moveOrderByTableId(tableId,disTableId)
                 .orElseThrow(NotFoundException::new);
     }
 
@@ -45,5 +59,11 @@ public class TableProcessingOrderController {
     public FormResponse insert(@Valid @RequestBody TableProcessingOrderForm tableProcessingOrderForm) {
         return FormResponse.builder()
                 .id(this.tableProcessingOrderService.create(tableProcessingOrderForm).getTableId()).build();
+    }
+
+    @RequestMapping(value = "/{tableId}/customer/{customerName}", method = RequestMethod.POST)
+    public TableProcessingOrder addStatus(@PathVariable BigInteger tableId, @PathVariable String customerName){
+        return this.tableProcessingOrderService.addCustomer(tableId,customerName)
+                .orElseThrow(NotFoundException::new);
     }
 }

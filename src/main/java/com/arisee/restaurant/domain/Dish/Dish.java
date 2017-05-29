@@ -22,6 +22,7 @@ public class Dish {
     private DishStatus status;
     private float price;
     private BigInteger categoryId;
+    private String image;
 
 //    @ManyToOne
 //    @JoinColumn(name = "categoryId")
@@ -35,6 +36,7 @@ public class Dish {
         rs.setStatus(status);
         rs.setPrice(price);
         rs.setCategoryId(categoryId);
+        rs.setImage(image);
         return rs;
     }
 

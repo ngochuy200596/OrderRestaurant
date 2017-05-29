@@ -12,4 +12,5 @@ public class Dish {
     private DishStatus status;
     private float price;
     private BigInteger categoryId;
+    private String image;
 }

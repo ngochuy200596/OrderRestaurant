@@ -25,7 +25,6 @@ public class Order {
     private String phone;
     @Enumerated(EnumType.ORDINAL)
     private OrderStatus status;
-    private LocalDateTime scheduleOn;
     private LocalDateTime createdDate;
     private BigInteger tableId;
     private BigInteger userId;
@@ -45,7 +44,6 @@ public class Order {
         rs.setCustomerName(customerName);
         rs.setPhone(phone);
         rs.setStatus(status);
-        rs.setScheduleOn(scheduleOn);
         rs.setCreatedDate(createdDate);
         rs.setTableId(tableId);
         rs.setUserId(userId);

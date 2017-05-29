@@ -22,8 +22,6 @@ public class OrderForm {
     @NotNull
     private OrderStatus status;
 
-    private LocalDateTime scheduleOn;
-
     @NotEmpty
     private List<OrderItemForm> items;
     @NotNull

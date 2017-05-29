@@ -1,11 +1,11 @@
 package com.arisee.restaurant.domain.processingOrder;
 
+import com.arisee.restaurant.domain.Dish.Dish;
+import com.arisee.restaurant.domain.category.Category;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Data
@@ -14,9 +14,10 @@ import java.io.Serializable;
 public class ProcessingOrderItemPK implements Serializable {
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "tableId")
+    @JoinColumn(name = "tableId", nullable = false)
     @JsonIgnore
     private TableProcessingOrder tableProcessingOrder;
+
 
     @Override
     public String toString() {

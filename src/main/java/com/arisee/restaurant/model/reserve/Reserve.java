@@ -12,4 +12,5 @@ public class Reserve {
     private LocalDateTime scheduleOn;
     private LocalDateTime createdDate;
     private BigInteger tableId;
+    private Integer quantity;
 }

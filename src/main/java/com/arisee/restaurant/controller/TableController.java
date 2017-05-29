@@ -14,7 +14,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tables")
+@RequestMapping("/api/tables")
 public class TableController {
     @Autowired
     private TableService tableService;
@@ -36,6 +36,12 @@ public class TableController {
     @RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Table update(@PathVariable BigInteger id, @Valid @RequestBody TableForm tableForm) {
         return tableService.update(id, tableForm).orElseThrow(NotFoundException::new);
+    }
+
+    @RequestMapping(value = "/{id}/status/{status}",method = RequestMethod.POST)
+    public Table setStatus(@PathVariable BigInteger id, @PathVariable Integer status){
+        return tableService.setStatus(id,status)
+                .orElseThrow(NotFoundException::new);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)

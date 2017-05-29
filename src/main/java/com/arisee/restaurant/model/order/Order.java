@@ -14,7 +14,6 @@ public class Order {
     private String phone;
 
     private OrderStatus status;
-    private LocalDateTime scheduleOn;
     private LocalDateTime createdDate;
     private List<OrderItemForm> items;
     private BigInteger tableId;

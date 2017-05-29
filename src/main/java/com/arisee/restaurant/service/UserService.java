@@ -28,29 +28,30 @@ public class UserService {
         return rs;
     }
 
-    public User create(UserForm userForm){
+    public User create(UserForm userForm) {
         User user = new User();
-        user.setFullName(userForm.getFullName());
         user.setUserName(userForm.getUserName());
         user.setPassWord(userForm.getPassWord());
         return this.userRepository.save(user);
     }
 
-
-
-    public Optional<User> getById(BigInteger id){
+    public Optional<User> getById(BigInteger id) {
         return this.userRepository.getById(id);
     }
-    public void delete(BigInteger id){
+
+    public void delete(BigInteger id) {
         getById(id).ifPresent(userRepository::delete);
     }
 
-    public Optional<User> update(BigInteger id, UserForm userForm){
+    public Optional<User> update(BigInteger id, UserForm userForm) {
         return getById(id).map(user -> {
-            user.setFullName(userForm.getFullName());
             user.setUserName(userForm.getUserName());
             user.setPassWord(userForm.getPassWord());
             return this.userRepository.save(user);
         });
+    }
+
+    public Optional<User> login(String userName, String passWord) {
+        return this.userRepository.login(userName,passWord);
     }
 }

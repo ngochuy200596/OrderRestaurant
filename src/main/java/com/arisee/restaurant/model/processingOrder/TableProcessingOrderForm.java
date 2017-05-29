@@ -15,13 +15,10 @@ import java.util.List;
 public class TableProcessingOrderForm {
     @NotNull
     private BigInteger tableId;
-    @NotBlank
+//    @NotBlank
     private String customerName;
-    @NotBlank
-    private String phone;
     @NotNull
     private ProcessingOrderStatus status;
-    private LocalDateTime scheduleOn;
     private LocalDateTime createdDate;
     @NotEmpty
     private List<ProcessingOrderItemForm> items;

@@ -10,4 +10,7 @@ public class TableForm {
 
     @NotBlank
     private String location;
+
+    @NotBlank
+    private Integer status;
 }

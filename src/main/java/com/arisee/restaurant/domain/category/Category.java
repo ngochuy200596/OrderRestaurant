@@ -1,13 +1,10 @@
 package com.arisee.restaurant.domain.category;
 
 
-import com.arisee.restaurant.domain.Dish.Dish;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+
 import javax.persistence.*;
-import javax.persistence.Table;
 import java.math.BigInteger;
-import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -22,11 +19,10 @@ public class Category {
 //    @JsonIgnore
 //    private List<Dish> dish;
 
-    public com.arisee.restaurant.model.category.Category toCategory(){
+    public com.arisee.restaurant.model.category.Category toCategory() {
         com.arisee.restaurant.model.category.Category rs = new com.arisee.restaurant.model.category.Category();
         rs.setId(id);
         rs.setName(name);
-
         return rs;
     }
 }

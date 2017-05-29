@@ -13,7 +13,6 @@ public class TableProcessingOrder {
     private String customerName;
     private String phone;
     private ProcessingOrderStatus status;
-    private LocalDateTime scheduleOn;
     private LocalDateTime createdDate;
     private List<ProcessingOrderItemForm> items;
 }

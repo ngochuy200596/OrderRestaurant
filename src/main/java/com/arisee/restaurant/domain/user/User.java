@@ -15,13 +15,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private BigInteger id;
 
-    private String fullName;
-
     private String userName;
 
     private String passWord;
 
+    private String fullName;
 
+    private String image;
 
     public com.arisee.restaurant.model.user.User toUser(){
         com.arisee.restaurant.model.user.User rs = new com.arisee.restaurant.model.user.User();
@@ -29,6 +29,7 @@ public class User {
         rs.setFullName(fullName);
         rs.setUserName(userName);
         rs.setPassWord(passWord);
+        rs.setImage(image);
         return rs;
     }
 }

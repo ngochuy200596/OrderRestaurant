@@ -43,7 +43,6 @@ public class OrderService {
            order.setCustomerName(orderForm.getCustomerName());
            order.setPhone(orderForm.getPhone());
            order.setStatus(orderForm.getStatus());
-           order.setScheduleOn(orderForm.getScheduleOn());
            order.setTableId(orderForm.getTableId());
            order.setUserId(orderForm.getUserId());
            order.setListOrderItems(orderForm.getItems());
@@ -56,7 +55,6 @@ public class OrderService {
         order.setCustomerName(orderForm.getCustomerName());
         order.setPhone(orderForm.getPhone());
         order.setStatus(orderForm.getStatus());
-        order.setScheduleOn(orderForm.getScheduleOn());
         order.setTableId(orderForm.getTableId());
         order.setUserId(orderForm.getUserId());
         order.setCreatedDate(LocalDateTime.now());

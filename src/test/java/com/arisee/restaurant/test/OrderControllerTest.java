@@ -36,7 +36,6 @@ public class OrderControllerTest {
         orderForm.setCustomerName("lam");
         orderForm.setPhone("0165");
         orderForm.setStatus(OrderStatus.AVAILABLE);
-        orderForm.setScheduleOn(LocalDateTime.now());
 
 
         List<OrderItemForm> listOrderItems = new ArrayList<>();
@@ -97,7 +96,6 @@ public class OrderControllerTest {
         orderForm.setCustomerName("duy");
         orderForm.setPhone("132");
         orderForm.setStatus(OrderStatus.AVAILABLE);
-        orderForm.setScheduleOn(LocalDateTime.now());
 
 
         List<OrderItemForm> listOrderItems = new ArrayList<>();

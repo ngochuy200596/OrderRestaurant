@@ -33,10 +33,8 @@ public class TableProcessingOrderControllerTest {
         TableProcessingOrderForm orderForm =  new TableProcessingOrderForm();
         orderForm.setTableId(BigInteger.valueOf(6));
         orderForm.setCustomerName("hao");
-        orderForm.setPhone("123");
         orderForm.setStatus(ProcessingOrderStatus.AVAILABLE);
         orderForm.setCreatedDate(LocalDateTime.of(2017,04,27,4,41));
-        orderForm.setScheduleOn(LocalDateTime.of(2017,04,27,4,41));
 
         List<ProcessingOrderItemForm> orderItemForms = new ArrayList<>();
         ProcessingOrderItemForm form = new ProcessingOrderItemForm();
@@ -74,10 +72,8 @@ public class TableProcessingOrderControllerTest {
         TableProcessingOrderForm orderForm = new TableProcessingOrderForm();
         orderForm.setTableId(BigInteger.valueOf(4));
         orderForm.setCustomerName("hao");
-        orderForm.setPhone("123");
         orderForm.setStatus(ProcessingOrderStatus.AVAILABLE);
         orderForm.setCreatedDate(LocalDateTime.now());
-        orderForm.setScheduleOn(LocalDateTime.now());
 
 
         List<ProcessingOrderItemForm> orderItemForms = new ArrayList<>();

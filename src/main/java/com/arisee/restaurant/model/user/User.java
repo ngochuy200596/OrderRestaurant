@@ -14,6 +14,8 @@ public class User {
 
     private String passWord;
 
+    private String image;
+
 
 
 }

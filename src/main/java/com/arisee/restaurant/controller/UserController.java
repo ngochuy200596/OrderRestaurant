@@ -6,7 +6,10 @@ import com.arisee.restaurant.exception.NotFoundException;
 import com.arisee.restaurant.model.user.UserForm;
 import com.arisee.restaurant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -14,7 +17,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -41,8 +44,14 @@ public class UserController {
         return this.userService.update(id, userForm).orElseThrow(NotFoundException::new);
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public User insert(@Valid @RequestBody UserForm userForm) {
-        return userService.create(userForm);
+//    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+//    public User insert(@Valid @RequestBody UserForm userForm) {
+//        return userService.create(userForm);
+//    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public User login(@Valid @RequestBody UserForm userForm) {
+        return this.userService.login(userForm.getUserName(),userForm.getPassWord())
+                .orElseThrow(NotFoundException::new);
     }
 }

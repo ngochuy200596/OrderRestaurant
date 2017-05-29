@@ -1,6 +1,7 @@
 package com.arisee.restaurant.service;
 
 import com.arisee.restaurant.domain.table.Table;
+import com.arisee.restaurant.domain.table.TableStatus;
 import com.arisee.restaurant.model.table.TableForm;
 import com.arisee.restaurant.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,22 +29,32 @@ public class TableService {
         return rs;
     }
 
-    public Table create(TableForm tableForm){
-      Table table = new Table();
-      table.setName(tableForm.getName());
-      table.setLocation(tableForm.getLocation());
-      return this.tableRepository.save(table);
+    public Table create(TableForm tableForm) {
+        Table table = new Table();
+        table.setName(tableForm.getName());
+        table.setLocation(tableForm.getLocation());
+        return this.tableRepository.save(table);
     }
-    public Optional<Table> getById(BigInteger id){
+
+    public Optional<Table> getById(BigInteger id) {
         return this.tableRepository.getById(id);
     }
-    public void delete(BigInteger id){
+
+    public void delete(BigInteger id) {
         getById(id).ifPresent(tableRepository::delete);
     }
-    public Optional<Table> update(BigInteger id, TableForm tableForm){
-        return getById(id).map(table ->{
+
+    public Optional<Table> update(BigInteger id, TableForm tableForm) {
+        return getById(id).map(table -> {
             table.setName(tableForm.getName());
             table.setLocation(tableForm.getLocation());
+            return this.tableRepository.save(table);
+        });
+    }
+
+    public Optional<Table> setStatus(BigInteger tableId, Integer status) {
+        return this.getById(tableId).map(table -> {
+            table.setStatus(TableStatus.values()[status]);
             return this.tableRepository.save(table);
         });
     }
