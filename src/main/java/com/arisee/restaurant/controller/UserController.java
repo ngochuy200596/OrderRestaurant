@@ -6,10 +6,7 @@ import com.arisee.restaurant.exception.NotFoundException;
 import com.arisee.restaurant.model.user.UserForm;
 import com.arisee.restaurant.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -49,9 +46,9 @@ public class UserController {
 //        return userService.create(userForm);
 //    }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public User login(@Valid @RequestBody UserForm userForm) {
-        return this.userService.login(userForm.getUserName(),userForm.getPassWord())
+    @RequestMapping(value = "/permission/{permissionId}", method = RequestMethod.POST)
+    public User login(@Valid @RequestBody UserForm userForm, @PathVariable Integer permissionId) {
+        return this.userService.login(userForm.getUserName(),userForm.getPassWord(),permissionId)
                 .orElseThrow(NotFoundException::new);
     }
 }

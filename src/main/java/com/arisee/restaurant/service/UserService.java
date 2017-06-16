@@ -1,6 +1,7 @@
 package com.arisee.restaurant.service;
 
 import com.arisee.restaurant.domain.user.User;
+import com.arisee.restaurant.exception.NotFoundException;
 import com.arisee.restaurant.model.user.UserForm;
 import com.arisee.restaurant.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class UserService {
         });
     }
 
-    public Optional<User> login(String userName, String passWord) {
-        return this.userRepository.login(userName,passWord);
+    public Optional<User> login(String userName, String passWord, Integer permissionId) {
+        return this.userRepository.login(userName, passWord, permissionId);
     }
 }

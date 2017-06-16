@@ -58,4 +58,8 @@ public class TableService {
             return this.tableRepository.save(table);
         });
     }
+
+    public Optional<List<Table>> getByStattus(TableStatus status){
+        return this.tableRepository.getByStatus(status);
+    }
 }

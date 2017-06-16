@@ -35,21 +35,20 @@ public class OrderControllerTest {
         OrderForm orderForm = new OrderForm();
         orderForm.setCustomerName("lam");
         orderForm.setPhone("0165");
-        orderForm.setStatus(OrderStatus.AVAILABLE);
 
 
         List<OrderItemForm> listOrderItems = new ArrayList<>();
         OrderItemForm form = new OrderItemForm();
         form.setDescription("vao");
-        form.setQuantity(1);
-        form.setDishId(BigInteger.valueOf(6));
+//        form.setQuantity(1.00);
+//        form.setDishId(BigInteger.valueOf(6));
         listOrderItems.add(form);
 
 
         OrderItemForm form1 = new OrderItemForm();
         form1.setDescription("hao");
-        form1.setQuantity(2);
-        form1.setDishId(BigInteger.valueOf(5));
+//        form1.setQuantity(2);
+//        form1.setDishId(BigInteger.valueOf(5));
         listOrderItems.add(form1);
         orderForm.setItems(listOrderItems);
 
@@ -59,7 +58,6 @@ public class OrderControllerTest {
         Assertions.assertThat(order.getId()).isNotNull();
         Assertions.assertThat(order.getCustomerName()).isEqualTo(orderForm.getCustomerName());
         Assertions.assertThat(order.getPhone()).isEqualTo(orderForm.getPhone());
-        Assertions.assertThat(order.getStatus()).isEqualTo(orderForm.getStatus());
 
 
 
@@ -95,14 +93,13 @@ public class OrderControllerTest {
         OrderForm orderForm = new OrderForm();
         orderForm.setCustomerName("duy");
         orderForm.setPhone("132");
-        orderForm.setStatus(OrderStatus.AVAILABLE);
 
 
         List<OrderItemForm> listOrderItems = new ArrayList<>();
         OrderItemForm form = new OrderItemForm();
         form.setDescription("54654654");
-        form.setQuantity(7);
-        form.setDishId(BigInteger.valueOf(5));
+//        form.setQuantity(7);
+//        form.setDishId(BigInteger.valueOf(5));
         listOrderItems.add(form);
 
         orderForm.setItems(listOrderItems);
@@ -112,7 +109,6 @@ public class OrderControllerTest {
         Assertions.assertThat(order.getId()).isNotNull();
         Assertions.assertThat(order.getCustomerName()).isEqualTo(orderForm.getCustomerName());
         Assertions.assertThat(order.getPhone()).isEqualTo(orderForm.getPhone());
-        Assertions.assertThat(order.getStatus()).isEqualTo(orderForm.getStatus());
 
 
     }

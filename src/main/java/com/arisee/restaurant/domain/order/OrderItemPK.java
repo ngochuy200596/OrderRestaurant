@@ -16,5 +16,12 @@ public class OrderItemPK implements Serializable{
     @ManyToOne
     @JoinColumn(name = "orderId")
     private Order order;
+
+    @Override
+    public String toString() {
+        return "OrderItemPK{" +
+                "id=" + id +
+                '}';
+    }
 }
 

@@ -39,7 +39,7 @@ public class TableProcessingOrderControllerTest {
         List<ProcessingOrderItemForm> orderItemForms = new ArrayList<>();
         ProcessingOrderItemForm form = new ProcessingOrderItemForm();
         form.setDescription("con");
-        form.setQuantity(1);
+//        form.setQuantity(1);
         form.setStatus(ProcessingOrderItemStatus.NOT_AVAILABLE);
         orderItemForms.add(form);
         orderForm.setItems(orderItemForms);
@@ -79,7 +79,7 @@ public class TableProcessingOrderControllerTest {
         List<ProcessingOrderItemForm> orderItemForms = new ArrayList<>();
         ProcessingOrderItemForm form = new ProcessingOrderItemForm();
         form.setDescription("con");
-        form.setQuantity(1);
+//        form.setQuantity(1);
         form.setStatus(ProcessingOrderItemStatus.NOT_AVAILABLE);
         orderItemForms.add(form);
         orderForm.setItems(orderItemForms);

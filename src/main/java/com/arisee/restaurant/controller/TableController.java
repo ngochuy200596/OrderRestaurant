@@ -2,6 +2,7 @@ package com.arisee.restaurant.controller;
 
 
 import com.arisee.restaurant.domain.table.Table;
+import com.arisee.restaurant.domain.table.TableStatus;
 import com.arisee.restaurant.exception.NotFoundException;
 import com.arisee.restaurant.model.table.TableForm;
 import com.arisee.restaurant.service.TableService;
@@ -47,5 +48,11 @@ public class TableController {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Table insert(@Valid  @RequestBody TableForm tableForm) {
         return tableService.create(tableForm);
+    }
+
+    @RequestMapping(value = "status/{status}",method = RequestMethod.GET)
+    public List<Table> getByStatus(@PathVariable TableStatus status){
+        return this.tableService.getByStattus(status)
+                .orElseThrow(NotFoundException :: new);
     }
 }

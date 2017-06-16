@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 @Entity
@@ -18,13 +19,15 @@ public class ProcessingOrderItem {
     @Enumerated(EnumType.ORDINAL)
     private ProcessingOrderItemStatus status;
     private String description;
-    private Integer quantity;
-
-
+    private BigDecimal quantity;
 
     @OneToOne
     @JoinColumn(name = "dishId")
     private Dish dish;
+
+    public BigDecimal total() {
+        return dish.getPrice().multiply(quantity);
+    }
 
     public ProcessingOrderItemForm toProcessingForm() {
         ProcessingOrderItemForm rs = new ProcessingOrderItemForm();
@@ -36,7 +39,7 @@ public class ProcessingOrderItem {
         return rs;
     }
 
-    public com.arisee.restaurant.model.processingOrder.ProcessingOrderItem toProcessingOrderItem(){
+    public com.arisee.restaurant.model.processingOrder.ProcessingOrderItem toProcessingOrderItem() {
         com.arisee.restaurant.model.processingOrder.ProcessingOrderItem rs = new com.arisee.restaurant.model.processingOrder.ProcessingOrderItem();
         rs.setDishId(dish.getId());
         rs.setId(pk.getId());

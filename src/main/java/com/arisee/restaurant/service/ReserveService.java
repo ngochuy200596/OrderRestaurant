@@ -75,4 +75,6 @@ public class ReserveService {
     public Optional<List<Reserve>> findByTableId(BigInteger tableId) {
         return this.reserveRepository.findByTableId(tableId);
     }
+
+
 }

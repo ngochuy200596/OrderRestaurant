@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -20,9 +21,10 @@ public class Dish {
     private String name;
     @Enumerated(EnumType.ORDINAL)
     private DishStatus status;
-    private float price;
+    private BigDecimal price;
     private BigInteger categoryId;
     private String image;
+    private BigInteger rank;
 
 //    @ManyToOne
 //    @JoinColumn(name = "categoryId")
@@ -37,6 +39,7 @@ public class Dish {
         rs.setPrice(price);
         rs.setCategoryId(categoryId);
         rs.setImage(image);
+        rs.setRank(rank);
         return rs;
     }
 

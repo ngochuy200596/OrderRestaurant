@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -60,5 +61,17 @@ public class DishService {
         dish.setPrice(dishForm.getPrice());
         dish.setCategoryId(dishForm.getCategoryId());
         return this.dishRepository.save(dish);
+    }
+
+    public Optional<Dish> increseRank(BigInteger id){
+        return this.getById(id).map(dish -> {
+            BigInteger x = new BigInteger("1");
+            dish.setRank(dish.getRank().add(x));
+            return this.dishRepository.save(dish);
+        });
+    }
+
+    public Optional<List<Dish>> findByCategoryId(BigInteger categoryId){
+        return this.dishRepository.findByCategoryId(categoryId);
     }
 }

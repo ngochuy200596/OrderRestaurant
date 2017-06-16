@@ -6,14 +6,17 @@ import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 @Data
 public class OrderItemForm {
+//    @NotNull
+//    private BigInteger dishId;
     @NotNull
-    private BigInteger dishId;
-    @NotBlank
+    private Dish dish;
+//    @NotBlank
     private String description;
     @NotNull
-    private Integer quantity;
+    private BigDecimal quantity;
 }

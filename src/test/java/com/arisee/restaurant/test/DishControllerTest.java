@@ -31,7 +31,7 @@ public class DishControllerTest {
         DishForm dishForm = new DishForm();
         dishForm.setName("duy");
         dishForm.setStatus(DishStatus.NOT_AVAILABLE);
-        dishForm.setPrice(1);
+//        dishForm.setPrice(1);
 
         HttpEntity<DishForm> entity = new HttpEntity<>(dishForm);
         Dish dish = this.restTemplate.exchange("/dishes", HttpMethod.POST, entity, Dish.class).getBody();
@@ -77,7 +77,7 @@ public class DishControllerTest {
         DishForm dishForm = new DishForm();
         dishForm.setName("huy");
         dishForm.setStatus(NOT_AVAILABLE);
-        dishForm.setPrice(4);
+//        dishForm.setPrice(4);
 
         HttpEntity<DishForm> entity = new HttpEntity<>(dishForm);
 

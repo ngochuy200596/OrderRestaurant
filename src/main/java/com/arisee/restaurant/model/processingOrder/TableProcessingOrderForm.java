@@ -16,7 +16,10 @@ public class TableProcessingOrderForm {
     @NotNull
     private BigInteger tableId;
 //    @NotBlank
+    @NotNull
     private String customerName;
+    @NotNull
+    private String phone;
     @NotNull
     private ProcessingOrderStatus status;
     private LocalDateTime createdDate;

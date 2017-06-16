@@ -23,6 +23,8 @@ public class User {
 
     private String image;
 
+    private Integer permissionId;
+
     public com.arisee.restaurant.model.user.User toUser(){
         com.arisee.restaurant.model.user.User rs = new com.arisee.restaurant.model.user.User();
         rs.setId(id);
@@ -30,6 +32,7 @@ public class User {
         rs.setUserName(userName);
         rs.setPassWord(passWord);
         rs.setImage(image);
+        rs.setPermissionId(permissionId);
         return rs;
     }
 }

@@ -50,9 +50,13 @@ public class ProcessingOrderItemService {
         });
     }
 
-//    public Optional<ProcessingOrderItem> findById(Integer id, BigInteger tableId){
-//        return this.processingOrderItemRepository.findById(id,tableId);
-//    }
+    public Optional<ProcessingOrderItem> findOne(ProcessingOrderItemPK orderItemPK) {
+        return Optional.ofNullable(this.processingOrderItemRepository.findOne(orderItemPK));
+    }
+
+    public void delete (ProcessingOrderItemPK orderItemPK){
+       findOne(orderItemPK).ifPresent(processingOrderItemRepository::delete);
+    }
 
 //    public ProcessingOrderItem create(ProcessingOrderItemForm processingOrderItemForm){
 //        ProcessingOrderItem item = new ProcessingOrderItem();

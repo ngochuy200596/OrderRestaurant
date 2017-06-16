@@ -42,7 +42,6 @@ public class OrderService {
 
            order.setCustomerName(orderForm.getCustomerName());
            order.setPhone(orderForm.getPhone());
-           order.setStatus(orderForm.getStatus());
            order.setTableId(orderForm.getTableId());
            order.setUserId(orderForm.getUserId());
            order.setListOrderItems(orderForm.getItems());
@@ -54,12 +53,11 @@ public class OrderService {
         Order order =new Order();
         order.setCustomerName(orderForm.getCustomerName());
         order.setPhone(orderForm.getPhone());
-        order.setStatus(orderForm.getStatus());
         order.setTableId(orderForm.getTableId());
         order.setUserId(orderForm.getUserId());
         order.setCreatedDate(LocalDateTime.now());
         order.setListOrderItems(orderForm.getItems());
-
+        order.setTotal(orderForm.getTotal());
         return this.orderRepository.save(order);
     }
 }

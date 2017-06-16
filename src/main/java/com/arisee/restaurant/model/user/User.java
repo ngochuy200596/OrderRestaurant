@@ -16,6 +16,5 @@ public class User {
 
     private String image;
 
-
-
+    private Integer permissionId;
 }

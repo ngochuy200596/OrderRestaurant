@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,10 +18,8 @@ public class OrderForm {
     @NotBlank
     private String customerName;
 
-    @NotBlank
+//    @NotBlank
     private String phone;
-    @NotNull
-    private OrderStatus status;
 
     @NotEmpty
     private List<OrderItemForm> items;
@@ -28,4 +27,6 @@ public class OrderForm {
     private BigInteger tableId;
     @NotNull
     private BigInteger userId;
+    @NotNull
+    private BigDecimal total;
 }

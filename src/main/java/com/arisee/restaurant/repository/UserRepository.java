@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface UserRepository extends CrudRepository<User, BigInteger> {
     Optional<User> getById(BigInteger id);
 
-    @Query("SELECT u FROM #{#entityName} u WHERE u.userName = ?1 AND u.passWord =?2")
-    Optional<User> login(String userName, String passWord);
+    @Query("SELECT u FROM #{#entityName} u WHERE u.userName = ?1 AND u.passWord =?2 AND u.permissionId = ?3")
+    Optional<User> login(String userName, String passWord, Integer permissionId);
 }

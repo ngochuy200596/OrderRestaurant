@@ -1,9 +1,11 @@
 package com.arisee.restaurant.controller;
 
+import com.arisee.restaurant.domain.order.Order;
 import com.arisee.restaurant.domain.processingOrder.ProcessingOrderItem;
 import com.arisee.restaurant.domain.processingOrder.TableProcessingOrder;
 import com.arisee.restaurant.exception.NotFoundException;
 import com.arisee.restaurant.model.FormResponse;
+import com.arisee.restaurant.model.processingOrder.ProcessingOrderItemForm;
 import com.arisee.restaurant.model.processingOrder.TableProcessingOrderForm;
 import com.arisee.restaurant.service.TableProcessingOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +13,10 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/processingOrders")
@@ -31,6 +35,7 @@ public class TableProcessingOrderController {
                 .orElseThrow(NotFoundException::new);
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/{tableId}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("tableId") BigInteger tableId) {
         this.tableProcessingOrderService.delete(tableId);
@@ -49,9 +54,9 @@ public class TableProcessingOrderController {
                 .orElseThrow(NotFoundException::new);
     }
 
-    @RequestMapping(value = "/{tableId}/disTable/{disTableId}",method = RequestMethod.POST)
-    public TableProcessingOrder move(@PathVariable BigInteger tableId, @PathVariable BigInteger disTableId){
-        return this.tableProcessingOrderService.moveOrderByTableId(tableId,disTableId)
+    @RequestMapping(value = "/{tableId}/disTable/{disTableId}", method = RequestMethod.POST)
+    public TableProcessingOrder move(@PathVariable BigInteger tableId, @PathVariable BigInteger disTableId) {
+        return this.tableProcessingOrderService.moveOrderByTableId(tableId, disTableId)
                 .orElseThrow(NotFoundException::new);
     }
 
@@ -62,8 +67,26 @@ public class TableProcessingOrderController {
     }
 
     @RequestMapping(value = "/{tableId}/customer/{customerName}", method = RequestMethod.POST)
-    public TableProcessingOrder addStatus(@PathVariable BigInteger tableId, @PathVariable String customerName){
-        return this.tableProcessingOrderService.addCustomer(tableId,customerName)
+    public TableProcessingOrder addStatus(@PathVariable BigInteger tableId, @PathVariable String customerName) {
+        return this.tableProcessingOrderService.addCustomer(tableId, customerName)
                 .orElseThrow(NotFoundException::new);
     }
+
+    @RequestMapping(value = "/total/{tableId}", method = RequestMethod.GET)
+    public BigDecimal totalAmountPayable(@PathVariable BigInteger tableId) {
+        return this.tableProcessingOrderService.totalAmountPayable(tableId);
+    }
+
+    @RequestMapping(value = "/{tableId}/user/{userId}", method = RequestMethod.POST)
+    public com.arisee.restaurant.model.order.Order pay(@PathVariable BigInteger tableId, @PathVariable BigInteger userId) {
+        return this.tableProcessingOrderService.pay(tableId, userId).map(Order::toOrder)
+                .orElseThrow(NotFoundException::new);
+    }
+
+    @RequestMapping(value = "/addItem/{tableId}", method = RequestMethod.POST)
+    public TableProcessingOrder addOrderItem(@PathVariable BigInteger tableId,@Valid @RequestBody ProcessingOrderItemForm orderItemForm) {
+        return this.tableProcessingOrderService.addOrderItem(tableId, orderItemForm)
+                .orElseThrow(NotFoundException::new);
+    }
+
 }

@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.NotActiveException;
 import java.math.BigInteger;
 import java.util.List;
 
@@ -49,5 +50,17 @@ public class DishController {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Dish insert(@Valid @RequestBody DishForm dishForm) {
         return this.dishService.create(dishForm);
+    }
+
+    @RequestMapping(value = "/increase/{id}",method = RequestMethod.GET)
+    public Dish increaseRank(@PathVariable BigInteger id){
+        return this.dishService.increseRank(id)
+                .orElseThrow(NotFoundException::new);
+    }
+
+    @RequestMapping(value = "/categoryId/{categoryId}",method = RequestMethod.GET)
+    public List<Dish> findByCategoryId(@PathVariable BigInteger categoryId){
+        return this.dishService.findByCategoryId(categoryId)
+                .orElseThrow(NotFoundException::new);
     }
 }

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @javax.persistence.Table(name = "table_processing_order")
-public class TableProcessingOrder{
+public class TableProcessingOrder {
     @Id
     private BigInteger tableId;
     private String customerName;
@@ -25,15 +25,16 @@ public class TableProcessingOrder{
     @Enumerated(EnumType.ORDINAL)
     private ProcessingOrderStatus status;
     private LocalDateTime createdDate;
+    private String phone;
 
     @OneToMany(mappedBy = "pk.tableProcessingOrder", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<ProcessingOrderItem> items = new ArrayList<>();
 
-    public void setListOrderItems(List<ProcessingOrderItem> items){
+    public void setListOrderItems(List<ProcessingOrderItem> items) {
         this.items.clear();
         int index = 1;
-        for(ProcessingOrderItem item : items){
+        for (ProcessingOrderItem item : items) {
             item.getPk().setId(index++);
             item.getPk().setTableProcessingOrder(this);
             this.items.add(item);
@@ -44,16 +45,18 @@ public class TableProcessingOrder{
         com.arisee.restaurant.model.processingOrder.TableProcessingOrder rs = new com.arisee.restaurant.model.processingOrder.TableProcessingOrder();
         rs.setTableId(tableId);
         rs.setCustomerName(customerName);
+        rs.setPhone(phone);
         rs.setStatus(status);
         rs.setCreatedDate(createdDate);
         rs.setItems(getItems().stream().map(ProcessingOrderItem::toProcessingForm).collect(Collectors.toList()));
         return rs;
     }
 
-    public TableProcessingOrderForm tableProcessingOrderForm(){
+    public TableProcessingOrderForm tableProcessingOrderForm() {
         TableProcessingOrderForm rs = new TableProcessingOrderForm();
         rs.setTableId(tableId);
         rs.setCustomerName(customerName);
+        rs.setPhone(phone);
         rs.setStatus(status);
         rs.setCreatedDate(createdDate);
         rs.setItems(getItems().stream().map(ProcessingOrderItem::toProcessingForm).collect(Collectors.toList()));
